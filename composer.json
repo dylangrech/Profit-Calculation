@@ -1,0 +1,20 @@
+{
+  "name": "dylangrech/profit-calculation",
+  "description": "Module for calculating profit",
+  "version": "1.0",
+  "type": "oxideshop-module",
+  "author": {
+    "name": "Dylan Grech",
+    "email": "dylan.grech@fatchip.de"
+  },
+  "extra": {
+    "oxideshop": {
+      "target-directory": "fc/fcprofitcalculation"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Fatchip\\ProfitCalculation\\": "../../../source/modules/fc/fcprofitcalculation"
+    }
+  }
+}
