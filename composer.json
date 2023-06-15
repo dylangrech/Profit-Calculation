@@ -1,7 +1,7 @@
 {
   "name": "dylangrech/profit-calculation",
-  "description": "Module for calculating profit",
-  "version": "1.0",
+  "description": "Module for validating an address",
+  "license": "MIT",
   "type": "oxideshop-module",
   "author": {
     "name": "Dylan Grech",
@@ -14,7 +14,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Fatchip\\ProfitCalculation\\": "../../../source/modules/fc/fcprofitcalculation"
+      "Fatchip\\AddressValidation\\": "./"
     }
   }
 }
