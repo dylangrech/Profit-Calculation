@@ -4,7 +4,7 @@
 <h2>Composer Installation</h2>
 <h3>Second Step (Composer Installation):</h3>
 <p>Afterwards type in the following in the command log:</p>
-<code>  composer require dylangrech/profit-calculation </code>
+<code>composer require dylangrech/profit-calculation</code>
 <p>Installation through Composer should now be complete.</p>
 <h2>Manual Installation</h2>
 <h3>Second Step (Manual Installation):</h3>
@@ -18,9 +18,7 @@
 <h3>Fourth Step (Manual Installation):</h3>
 <p>Lastly, as soon as you have copied the content, type in the following commands in the terminal(make sure you are in the oxid eshop of your choice):</p>
 <p>Each command has to be executed one at a time</p>
-<code>
-vendor/bin/oe-console oe:module:install-configuration source/modules/fc/fcprofitcalculation
+<code>vendor/bin/oe-console oe:module:install-configuration source/modules/fc/fcprofitcalculation
 composer config repositories.fc/fcaddressvalidation path source/modules/fc/fcprofitcalculation
-composer require fc/fcprofitcalculation -n
-</code>
+composer require fc/fcprofitcalculation -n</code>
 <h2>Congrats Module Setup has been finished. If there are any problems please do not hesitate to contact me!</h2>
