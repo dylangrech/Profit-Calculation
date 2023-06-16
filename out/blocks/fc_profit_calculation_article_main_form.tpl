@@ -17,17 +17,17 @@
             [{oxmultilang ident="FC_PROFIT_CALCULATION_GROSS_PROFIT_LABEL"}]
         </td>
         <td class="edittext">
-            <p style="color: [{if $oView->fcGetGrossProfit($edit) < 0}] red [{/if}]">
+            <p style="margin: 5px 5px; color: [{if $oView->fcGetGrossProfit($edit) < 0}] red [{/if}]">
                 [{$oView->fcGetGrossProfit($edit)}]€
             </p>
         </td>
     </tr>
-    <tr style="display: none" id="profitMargin">
+    <tr style=" display: none" id="profitMargin">
         <td class="edittext">
             [{oxmultilang ident="FC_PROFIT_CALCULATION_PROFIT_MARGIN_LABEL"}]
         </td>
         <td class="edittext">
-            <p>
+            <p style="margin: 5px 5px;">
                 [{$oView->fcGetProfitMargin($edit)}]%
             </p>
         </td>
