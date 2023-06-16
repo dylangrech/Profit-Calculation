@@ -15,7 +15,7 @@ class ArticleMain extends ArticleMain_parent
     public function fcGetGrossProfit($oArticle)
     {
         $oProfitCalculation = oxNew(ProfitCalculation::class);
-        return $oProfitCalculation->getProfitDataByKey($oArticle, 'GrossProfit');
+        return $oProfitCalculation->getGrossProfit($oArticle);
     }
 
     /**
@@ -27,6 +27,6 @@ class ArticleMain extends ArticleMain_parent
     public function fcGetProfitMargin($oArticle)
     {
         $oProfitCalculation = oxNew(ProfitCalculation::class);
-        return $oProfitCalculation->getProfitDataByKey($oArticle, 'ProfitMargin');
+        return $oProfitCalculation->getProfitMargin($oArticle);
     }
 }

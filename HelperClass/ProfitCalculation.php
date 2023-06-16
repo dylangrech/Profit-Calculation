@@ -8,49 +8,40 @@ namespace Fatchip\ProfitCalculation\HelperClass;
 class ProfitCalculation
 {
     /**
-     * Returns the value of a specific key from the profit data array
+     * Calculates the Gross Profit and returns the value or returns false if purchase price is null
      *
      * @param $oArticle
-     * @param $sKey
-     * @return mixed
+     * @return false|string
      */
-    public function getProfitDataByKey($oArticle, $sKey)
+    public function getGrossProfit($oArticle)
     {
         if ($oArticle !== null) {
             $oArticle->load($oArticle->oxarticles__oxid->value);
         }
-
-        if (!empty($oArticle->oxarticles__oxbprice->value) && !empty($oArticle->oxarticles__oxprice->value)) {
-            $aProfitData = $this->calculateProfitData($oArticle);
+        if (!empty($oArticle->oxarticles__oxbprice->value)) {
+            $flSellingPriceWithoutVAT = $oArticle->oxarticles__oxprice->value / (1+($oArticle->getArticleVat()/100));
+            $flGrossProfit = $flSellingPriceWithoutVAT - $oArticle->oxarticles__oxbprice->value;
+            return number_format($flGrossProfit, 2, '.', ',');
         }
-        return $aProfitData[$sKey];
+        return false;
     }
 
     /**
-     * Calculate the Profit Data which is then returned as an array
+     * Calculates the Profit Margin and returns the value or returns false if gross profit is null
      *
      * @param $oArticle
-     * @return array
+     * @return false|string
      */
-    public function calculateProfitData($oArticle): array
+    public function getProfitMargin($oArticle)
     {
-        $aProfitData = [];
-        $flSellingPriceWithoutVAT = $oArticle->oxarticles__oxprice->value / (1+($this->getArticleVAT($oArticle)/100));
-        $flGrossProfit = $flSellingPriceWithoutVAT - $oArticle->oxarticles__oxbprice->value;
-        $flProfitMargin = ($flGrossProfit/$oArticle->oxarticles__oxprice->value) * 100;
-        $aProfitData['GrossProfit'] = number_format($flGrossProfit, 2, '.', ',');
-        $aProfitData['ProfitMargin'] = number_format($flProfitMargin, 2);
-        return $aProfitData;
-    }
-
-    /**
-     * Returns the VAT of that particular Article passed in the parameter
-     *
-     * @param $oArticle
-     * @return false|float
-     */
-    public function getArticleVAT($oArticle)
-    {
-        return oxNew(\OxidEsales\Eshop\Application\Model\VatSelector::class)->getArticleVat($oArticle);
+        if ($oArticle !== null) {
+            $oArticle->load($oArticle->oxarticles__oxid->value);
+        }
+        $flGrossProfit = $this->getGrossProfit($oArticle);
+        if (!empty($flGrossProfit)) {
+            $flProfitMargin = ($flGrossProfit/$oArticle->oxarticles__oxprice->value) * 100;
+            return number_format($flProfitMargin, 2);
+        }
+        return false;
     }
 }

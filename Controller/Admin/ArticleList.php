@@ -15,7 +15,7 @@ class ArticleList extends ArticleList_parent
     public function fcGetProfitMargin($oArticle)
     {
         $oProfitCalculation = oxNew(ProfitCalculation::class);
-        $sProfitMargin = $oProfitCalculation->getProfitDataByKey($oArticle, 'ProfitMargin');
+        $sProfitMargin = $oProfitCalculation->getProfitMargin($oArticle);
         return !empty($sProfitMargin) ? $sProfitMargin.'%' : '';
     }
 }
