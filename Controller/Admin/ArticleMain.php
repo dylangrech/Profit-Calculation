@@ -2,22 +2,34 @@
 
 namespace Fatchip\ProfitCalculation\Controller\Admin;
 
+use Fatchip\ProfitCalculation\Model\ProfitCalculation;
+use OxidEsales\Eshop\Core\UtilsVatSelector;
+
 class ArticleMain extends ArticleMain_parent
 {
-    public function fcGetGrossProfit($flPurchasePrice, $flSellingPrice)
+    /**
+     * Returns the Gross Profit
+     *
+     * @param $flPurchasePrice
+     * @param $flSellingPrice
+     * @return string
+     */
+    public function fcGetGrossProfit($flPurchasePrice, $flSellingPrice, $iArticleId)
     {
-        if ($flPurchasePrice !== '0' && $flSellingPrice !== '0') {
-            $flSellingPriceWithoutVAT = $flSellingPrice / 1.19;
-            $flAnswer = $flSellingPriceWithoutVAT - $flPurchasePrice;
-            return number_format($flAnswer, 2, '.', ',');
-        }
-        return '0.00';
+        $oProfitCalculation = new ProfitCalculation();
+        return $oProfitCalculation->calculateGrossProfit($flPurchasePrice, $flSellingPrice, $iArticleId);
     }
 
-    public function fcGetProfitMargin($flPurchasePrice, $flSellingPrice)
+    /**
+     * Returns the Profit Margin
+     *
+     * @param $flPurchasePrice
+     * @param $flSellingPrice
+     * @return string
+     */
+    public function fcGetProfitMargin($flPurchasePrice, $flSellingPrice, $iArticleId)
     {
-        $flGrossProfit = $this->fcGetGrossProfit($flPurchasePrice, $flSellingPrice);
-        $flProfitMargin = ($flGrossProfit/$flSellingPrice) * 100;
-        return number_format($flProfitMargin, 2);
+        $oProfitCalculation = new ProfitCalculation();
+        return $oProfitCalculation->calculateProfitMargin($flPurchasePrice, $flSellingPrice, $iArticleId);
     }
 }
