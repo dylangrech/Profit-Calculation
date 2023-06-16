@@ -2,26 +2,20 @@
 
 namespace Fatchip\ProfitCalculation\Controller\Admin;
 
-use Fatchip\ProfitCalculation\Model\ProfitCalculation;
-use OxidEsales\EshopCommunity\Core\Price;
+use Fatchip\ProfitCalculation\HelperClass\ProfitCalculation;
 
 class ArticleList extends ArticleList_parent
 {
     /**
-     * Returns the profit margin or an N/A string if value is 0.00 or nan
+     * Gets the Profit Margin of a particular article
      *
-     * @param $flPurchasePrice
-     * @param $flSellingPrice
+     * @param $oArticle
      * @return string
      */
-    public function fcGetProfitMargin($flPurchasePrice, $flSellingPrice, $iArticleId)
+    public function fcGetProfitMargin($oArticle)
     {
-        $oProfitCalculation = new ProfitCalculation();
-        $profitMargin = $oProfitCalculation->calculateProfitMargin($flPurchasePrice, $flSellingPrice, $iArticleId);
-        if ($profitMargin == '0.00' || $profitMargin === 'nan') {
-            return 'N/A';
-        }
-        return $profitMargin . '%';
+        $oProfitCalculation = oxNew(ProfitCalculation::class);
+        $sProfitMargin = $oProfitCalculation->getProfitDataByKey($oArticle, 'ProfitMargin');
+        return !empty($sProfitMargin) ? $sProfitMargin.'%' : '';
     }
-
 }

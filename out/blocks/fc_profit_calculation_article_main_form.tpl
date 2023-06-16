@@ -1,4 +1,4 @@
-[{if $edit->oxarticles__oxbprice->value !== '' && $edit->oxarticles__oxprice->value !== '' && $oView->fcGetGrossProfit($edit->oxarticles__oxbprice->value, $edit->oxarticles__oxprice->value, $edit->oxarticles__oxid->value) != '0.00' && $oView->fcGetProfitMargin($edit->oxarticles__oxbprice->value, $edit->oxarticles__oxprice->value, $edit->oxarticles__oxid->value) !== 'nan' }]
+[{if $edit->oxarticles__oxbprice->value !== '' && $edit->oxarticles__oxprice->value !== '' && $oView->fcGetGrossProfit($edit) != '' && $oView->fcGetProfitMargin($edit) !== '' }]
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             let priceInputField = document.querySelector('[name="editval[oxarticles__oxprice]"]');
@@ -14,11 +14,11 @@
     </script>
     <tr style="display: none" id="grossProfit">
         <td class="edittext">
-            [{oxmultilang ident="FC_PROFIT_CALCULATION_GROSS_PROFIT_LABEL"}] ([{$oActCur->sign}])
+            [{oxmultilang ident="FC_PROFIT_CALCULATION_GROSS_PROFIT_LABEL"}]
         </td>
         <td class="edittext">
-            <p style="color: [{if $oView->fcGetGrossProfit($edit->oxarticles__oxbprice->value, $edit->oxarticles__oxprice->value, $edit->oxarticles__oxid->value) > 0}] green [{else}] red [{/if}]">
-                [{$oView->fcGetGrossProfit($edit->oxarticles__oxbprice->value, $edit->oxarticles__oxprice->value, $edit->oxarticles__oxid->value)}]
+            <p style="color: [{if $oView->fcGetGrossProfit($edit) < 0}] red [{/if}]">
+                [{$oView->fcGetGrossProfit($edit)}]€
             </p>
         </td>
     </tr>
@@ -27,8 +27,8 @@
             [{oxmultilang ident="FC_PROFIT_CALCULATION_PROFIT_MARGIN_LABEL"}]
         </td>
         <td class="edittext">
-            <p style="color: [{if $oView->fcGetProfitMargin($edit->oxarticles__oxbprice->value, $edit->oxarticles__oxprice->value, $edit->oxarticles__oxid->value) > 0}] green [{else}] red [{/if}]">
-                [{$oView->fcGetProfitMargin($edit->oxarticles__oxbprice->value, $edit->oxarticles__oxprice->value, $edit->oxarticles__oxid->value)}]
+            <p>
+                [{$oView->fcGetProfitMargin($edit)}]%
             </p>
         </td>
     </tr>

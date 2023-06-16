@@ -2,34 +2,31 @@
 
 namespace Fatchip\ProfitCalculation\Controller\Admin;
 
-use Fatchip\ProfitCalculation\Model\ProfitCalculation;
-use OxidEsales\Eshop\Core\UtilsVatSelector;
+use Fatchip\ProfitCalculation\HelperClass\ProfitCalculation;
 
 class ArticleMain extends ArticleMain_parent
 {
     /**
-     * Returns the Gross Profit
+     * Gets the Gross Profit of a particular article
      *
-     * @param $flPurchasePrice
-     * @param $flSellingPrice
-     * @return string
+     * @param $oArticle
+     * @return mixed
      */
-    public function fcGetGrossProfit($flPurchasePrice, $flSellingPrice, $iArticleId)
+    public function fcGetGrossProfit($oArticle)
     {
-        $oProfitCalculation = new ProfitCalculation();
-        return $oProfitCalculation->calculateGrossProfit($flPurchasePrice, $flSellingPrice, $iArticleId);
+        $oProfitCalculation = oxNew(ProfitCalculation::class);
+        return $oProfitCalculation->getProfitDataByKey($oArticle, 'GrossProfit');
     }
 
     /**
-     * Returns the Profit Margin
+     * Gets the Profit Margin of a particular article
      *
-     * @param $flPurchasePrice
-     * @param $flSellingPrice
-     * @return string
+     * @param $oArticle
+     * @return mixed
      */
-    public function fcGetProfitMargin($flPurchasePrice, $flSellingPrice, $iArticleId)
+    public function fcGetProfitMargin($oArticle)
     {
-        $oProfitCalculation = new ProfitCalculation();
-        return $oProfitCalculation->calculateProfitMargin($flPurchasePrice, $flSellingPrice, $iArticleId);
+        $oProfitCalculation = oxNew(ProfitCalculation::class);
+        return $oProfitCalculation->getProfitDataByKey($oArticle, 'ProfitMargin');
     }
 }
