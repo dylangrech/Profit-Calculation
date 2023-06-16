@@ -10,6 +10,8 @@
             grossProfitData.insertAdjacentElement('afterend', profitMarginData);
             grossProfitData.style.display = '';
             profitMarginData.style.display = '';
+            document.getElementById('grossProfitText').style.margin = '5px 5px';
+            document.getElementById('profitMarginText').style.margin = '5px 5px';
         });
     </script>
     <tr style="display: none" id="grossProfit">
@@ -17,7 +19,7 @@
             [{oxmultilang ident="FC_PROFIT_CALCULATION_GROSS_PROFIT_LABEL"}]
         </td>
         <td class="edittext">
-            <p style="margin: 5px 5px; color: [{if $oView->fcGetGrossProfit($edit) < 0}] red [{/if}]">
+            <p id="grossProfitText" style="color: [{if $oView->fcGetGrossProfit($edit) < 0}] red [{/if}]">
                 [{$oView->fcGetGrossProfit($edit)}]€
             </p>
         </td>
@@ -27,7 +29,7 @@
             [{oxmultilang ident="FC_PROFIT_CALCULATION_PROFIT_MARGIN_LABEL"}]
         </td>
         <td class="edittext">
-            <p style="margin: 5px 5px;">
+            <p id="profitMarginText">
                 [{$oView->fcGetProfitMargin($edit)}]%
             </p>
         </td>
