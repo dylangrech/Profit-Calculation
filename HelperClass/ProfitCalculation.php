@@ -15,9 +15,6 @@ class ProfitCalculation
      */
     public function getGrossProfit($oArticle)
     {
-        if ($oArticle !== null) {
-            $oArticle->load($oArticle->oxarticles__oxid->value);
-        }
         if (!empty($oArticle->oxarticles__oxbprice->value)) {
             $flSellingPriceWithoutVAT = $oArticle->oxarticles__oxprice->value / (1+($oArticle->getArticleVat()/100));
             $flGrossProfit = $flSellingPriceWithoutVAT - $oArticle->oxarticles__oxbprice->value;
@@ -34,9 +31,6 @@ class ProfitCalculation
      */
     public function getProfitMargin($oArticle)
     {
-        if ($oArticle !== null) {
-            $oArticle->load($oArticle->oxarticles__oxid->value);
-        }
         $flGrossProfit = $this->getGrossProfit($oArticle);
         if (!empty($flGrossProfit)) {
             $flProfitMargin = ($flGrossProfit/$oArticle->oxarticles__oxprice->value) * 100;
