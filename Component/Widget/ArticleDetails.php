@@ -1,6 +1,6 @@
 <?php
 
-namespace Fatchip\ProfitCalculation\Controller;
+namespace Fatchip\ProfitCalculation\Component\Widget;
 
 class ArticleDetails extends ArticleDetails_parent
 {
