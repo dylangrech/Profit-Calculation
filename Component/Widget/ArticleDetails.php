@@ -12,12 +12,9 @@ class ArticleDetails extends ArticleDetails_parent
     public function fcUserHasAdminRights()
     {
         $oUser = \OxidEsales\Eshop\Core\Registry::getSession()->getUser();
-        if ($oUser === null) {
-            return false;
+        if ($oUser && $oUser->inGroup('oxidadmin') === true) {
+            return true;
         }
-        if (!$oUser instanceof \OxidEsales\Eshop\Application\Model\User) {
-            return false;
-        }
-        return $oUser->inGroup('oxidadmin');
+        return false;
     }
 }
