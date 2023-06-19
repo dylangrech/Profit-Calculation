@@ -5,16 +5,19 @@ namespace Fatchip\ProfitCalculation\Component\Widget;
 class ArticleBox extends ArticleBox_parent
 {
     /**
-     * If the current user has malladmin rights true is returned
+     * Returns true if the user has admin rights
      *
      * @return bool
      */
-    public function userHasRights()
+    public function fcUserHasAdminRights()
     {
         $oUser = \OxidEsales\Eshop\Core\Registry::getSession()->getUser();
-        if ($oUser->oxuser__oxrights->value === 'malladmin') {
-            return true;
+        if ($oUser === null) {
+            return false;
         }
-        return false;
+        if (!$oUser instanceof \OxidEsales\Eshop\Application\Model\User) {
+            return false;
+        }
+        return $oUser->inGroup('oxidadmin');
     }
 }
