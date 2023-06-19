@@ -1,4 +1,4 @@
-[{if $edit->oxarticles__oxbprice->value !== '' && $edit->oxarticles__oxprice->value !== '' && $oView->fcGetGrossProfit($edit) != '' && $oView->fcGetProfitMargin($edit) !== '' }]
+[{if $edit->oxarticles__oxbprice->value !== '' && $edit->fcGetGrossProfit() != '' && $edit->fcGetProfitMargin() !== '' }]
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             let priceInputField = document.querySelector('[name="editval[oxarticles__oxprice]"]');
@@ -19,8 +19,8 @@
             [{oxmultilang ident="FC_PROFIT_CALCULATION_GROSS_PROFIT_LABEL"}]
         </td>
         <td class="edittext">
-            <p id="grossProfitText" style="color: [{if $oView->fcGetGrossProfit($edit) < 0}] red [{/if}]">
-                [{$oView->fcGetGrossProfit($edit)}]€
+            <p id="grossProfitText" style="color: [{if $edit->fcGetGrossProfit() < 0}] red [{/if}]">
+                [{$edit->fcGetGrossProfit()}]€
             </p>
         </td>
     </tr>
@@ -30,7 +30,7 @@
         </td>
         <td class="edittext">
             <p id="profitMarginText">
-                [{$oView->fcGetProfitMargin($edit)}]%
+                [{$edit->fcGetProfitMargin()}]%
             </p>
         </td>
     </tr>

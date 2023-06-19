@@ -24,14 +24,15 @@ $aModule = [
     'url'         => 'https://www.oxid-esales.com/',
     'email'       => 'dylangrech99@gmail.com',
     'extend'      => [
-        OxidEsales\Eshop\Application\Controller\Admin\ArticleMain::class => Fatchip\ProfitCalculation\Controller\Admin\ArticleMain::class,
-        OxidEsales\Eshop\Application\Controller\Admin\ArticleList::class => Fatchip\ProfitCalculation\Controller\Admin\ArticleList::class,
+        OxidEsales\Eshop\Application\Model\Article::class => Fatchip\ProfitCalculation\Model\Article::class,
+        OxidEsales\Eshop\Application\Component\Widget\ArticleDetails::class => Fatchip\ProfitCalculation\Controller\ArticleDetails::class,
     ],
     'blocks'      => [
         ['template' => 'article_main.tpl', 'block' => 'admin_article_main_form', 'file' => 'fc_profit_calculation_article_main_form.tpl'],
         ['template' => 'article_list.tpl', 'block' => 'admin_article_list_item', 'file' => 'fc_profit_calculation_article_list.tpl'],
         ['template' => 'article_list.tpl', 'block' => 'admin_article_list_colgroup', 'file' => 'fc_profit_calculation_article_list_colgroup.tpl'],
         ['template' => 'article_list.tpl', 'block' => 'admin_article_list_sorting', 'file' => 'fc_profit_calculation_article_list_sorting.tpl'],
+        ['template' => 'page/details/inc/productmain.tpl', 'block' => 'details_productmain_persparams', 'file' => 'fc_profit_calculation_productmain.tpl'],
     ],
     'events'       => [],
     'settings'     => []
