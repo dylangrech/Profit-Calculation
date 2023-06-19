@@ -9,7 +9,7 @@ class ArticleBox extends ArticleBox_parent
      *
      * @return bool
      */
-    public function fcUserHasAdminRights()
+    public function fcUserCanSeeProfitData()
     {
         $oUser = \OxidEsales\Eshop\Core\Registry::getSession()->getUser();
         if ($oUser && $oUser->inGroup('oxidadmin') === true) {

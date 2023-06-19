@@ -1,4 +1,4 @@
-[{if $oView->userHasRights() === true}]
+[{if $oView->fcUserCanSeeProfitData() === true}]
     [{if $oDetailsProduct->fcGetGrossProfit() !== false}]
         <p>
             [{oxmultilang ident="FC_PROFIT_CALCULATION_GROSS_PROFIT_LABEL"}]
